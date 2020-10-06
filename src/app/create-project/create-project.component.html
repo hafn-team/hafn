@@ -1,0 +1,45 @@
+<div>
+    <h1 class="h3 mb-4 text-gray-800">Add new Project</h1>
+    <form>
+      <div class="form-group">
+        <label htmlFor="org-name">Organization/Team:</label>
+        <select
+          class="form-control form-control-lg"
+          name="orgId"
+        >
+              <option>
+              first option 
+              </option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label htmlFor="org-name">Project name:</label>
+        <input
+          type="text"
+          class="form-control"
+          id="org-name"
+          name="name"
+          aria-describedby="organization-name"
+        />
+      </div>
+      <div class="form-group">
+        <label htmlFor="org-description">Description: </label>
+        <textarea
+          class="form-control"
+          id="org-description"
+          rows="3"
+          name="description"
+        
+        ></textarea>
+      </div>
+
+      <button
+        type="submit"
+        class="btn btn-primary"
+      
+      >
+        Create Project
+      </button>
+    </form>
+  </div>
