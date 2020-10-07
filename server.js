@@ -5,6 +5,10 @@ const app = express();
 const port = 3008;
 const db = require("./db/database.js");
 
+// const auth = require("express").Router();
+var bcrypt = require("bcryptjs");
+var salt = bcrypt.genSaltSync(10);
+
 const cors = require("cors");
 app.use(cors());
 
@@ -32,7 +36,7 @@ app.get("/organization/:userID", async (req, res) => {
   }
 });
 
-app.listen(port, () => console.log(`server is listening on port ${port}`));
+
 
 //get all the project of an organization
 app.get("/getOrgProject/:orgID", async (req, res) => {
@@ -59,3 +63,71 @@ app.post("/organization/:userID", async (req, res) => {
     console.log(e);
   }
 });
+
+
+
+
+const hash = (pass) => bcrypt.hashSync(pass, salt);
+
+app.post("/addUsers", (req, res) => {
+  let data = req.body;
+  console.log(data);
+  let users = [
+    data.fullname,
+    data.username,
+    hash(data.secretinfo),
+    hash(data.password),
+  ];
+  db.postData(users, (err, data) => {
+    if (err) throw err;
+    res.send(data);
+  });
+});
+
+app.get("/getUser", (req, res) => {
+  db.getAllData((err, data) => {
+    if (err) throw err;
+    res.send(data);
+  });
+});
+
+app.post("/login", (req, res) => {
+  console.log("aaa", req.body);
+  db.login((err, data) => {
+    let person = data;
+    if (err) throw err;
+    let arr = person.map(
+      (element) =>
+        req.body.username === element.username &&
+        bcrypt.compareSync(req.body.password, element.password)
+    );
+    res.send(arr.includes(true));
+  });
+});
+
+app.get("/forgetPassword", (req, res) => {
+  db.forgetPass((err, data) => {
+    console.log(data[0].username);
+    let person = data;
+    if (err) throw err;
+    console.log(req.body.secretinfo);
+    console.log(bcrypt.compareSync("welcome", hash("welcome")));
+    let arr = person.map(
+      (element) =>
+        req.body.username === element.username &&
+        bcrypt.compareSync(element.secretinfo, hash(req.body.secretinfo))
+    );
+
+    console.log(arr);
+    res.send(arr.includes(true));
+  });
+});
+
+app.post("/deleteuser", (req, res) => {
+  db.deleteUser(req.body.username, (err, data) => {
+    if (err) throw err;
+    res.send(req.body.username);
+  });
+});
+app.listen(port, () => console.log(`server is listening on port ${port}`));
+
