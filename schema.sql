@@ -26,7 +26,9 @@ PRIMARY KEY
     (ID),
 FOREIGN KEY
     (userID) REFERENCES users
-    (id)
+    (id),
+    created_at DATETIME
+DEFAULT CURRENT_TIMESTAMP
 );
     CREATE TABLE projects
     (
