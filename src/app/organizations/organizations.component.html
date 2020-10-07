@@ -13,19 +13,18 @@
   </div>
 </header>
 <div>
-    <h1 class="h3 mb-4 text-gray-800">Organizations List:</h1>
-    <div class="card shadow mb-4">
-      <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">
-          My organizations/Teams
-        </h6>
-      </div>
-      <div class="card-body">
-        <ul class="list-group">
-              <li class="list-group-item">
-                list of organizations
-              </li>
-        </ul>
-      </div>
+  <h1 class="h3 mb-4 text-gray-800">Organizations List:</h1>
+  <div class="card shadow mb-4">
+    <div class="card-header py-3">
+      <h6 class="m-0 font-weight-bold text-primary">My organizations/Teams</h6>
+    </div>
+    <div class="card-body">
+      <ul class="list-group" *ngFor="let organization of organizationData">
+        <li class="list-group-item">
+          {{ this.organization?.name }}
+          {{ this.organization?.description }}
+        </li>
+      </ul>
     </div>
   </div>
+</div>

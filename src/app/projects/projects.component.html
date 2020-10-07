@@ -13,17 +13,18 @@
   </div>
 </header>
 <div>
-    <h1 class="h3 mb-4 text-gray-800">Projects List:</h1>
-    <div class="card shadow mb-4">
-      <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">All projects</h6>
-      </div>
-      <div class="card-body">
-        <ul class="list-group">
-              <li class="list-group-item">
-                  this is list of projects
-              </li>
-        </ul>
-      </div>
+  <h1 class="h3 mb-4 text-gray-800">Projects List:</h1>
+  <div class="card shadow mb-4">
+    <div class="card-header py-3">
+      <h6 class="m-0 font-weight-bold text-primary">All projects</h6>
+    </div>
+    <div class="card-body">
+      <ul class="list-group">
+        <li class="list-group-item">
+          {{ this.projectData[0]?.name }}
+          {{ this.projectData[0]?.description }}
+        </li>
+      </ul>
     </div>
   </div>
+</div>
