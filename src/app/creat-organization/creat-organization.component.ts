@@ -13,7 +13,7 @@ export class CreatOrganizationComponent implements OnInit {
   constructor(private _http: HttpService) {}
 
   ngOnInit(): void {}
-  checkFunc() {
+  postNewOrg() {
     this._http
       .postOrganization(this.newOrgName, this.newOrgDescription)
       .subscribe((data) => {

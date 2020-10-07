@@ -17,18 +17,15 @@ export interface IUser {
   providedIn: 'root',
 })
 export class HttpService {
-
   // pathBase = 'http://localhost:3008';
   pathBaseOrganization = 'http://localhost:3008/organization/1';
-  pathBaseOrgProject = 'http://localhost:3008/getOrgProject/2';
-  pathBaseCreateOrganization = 'http://localhost:3008/organization/1';
+  pathBaseOrgProject = 'http://localhost:3008/getOrgProject/3';
   constructor(private http: HttpClient) {}
 
   // haveData(): Observable<IUser[]> {
   //   return this.http.get<IUser[]>(`${this.pathBase}/user`);
   // }
   ROOT_URL = 'http://localhost:3008';
-
 
   getOrganizationData() {
     // console.log('fij', this.http.get(this.pathBaseOrganization));
@@ -45,7 +42,6 @@ export class HttpService {
       description: description,
       userID: 1,
     });
-
   }
   getPosts() {
     return this.http.get(this.ROOT_URL + '/getUser');
@@ -57,6 +53,14 @@ export class HttpService {
   logUser(obj) {
     console.log('fend', obj);
     return this.http.post(this.ROOT_URL + '/login', obj);
+  }
 
+  postProject(name, description) {
+    return this.http.post(this.pathBaseOrgProject, {
+      name: name,
+      description: description,
+      organizationID: 3,
+      userID: 1,
+    });
   }
 }

@@ -36,8 +36,6 @@ app.get("/organization/:userID", async (req, res) => {
   }
 });
 
-
-
 //get all the project of an organization
 app.get("/getOrgProject/:orgID", async (req, res) => {
   try {
@@ -64,8 +62,22 @@ app.post("/organization/:userID", async (req, res) => {
   }
 });
 
-
-
+/**
+ * Creates a new project
+ *
+ */
+app.post("/getOrgProject/:orgID", async (req, res) => {
+  try {
+    await db.createProject(
+      req.body.userID,
+      req.body.organizationID,
+      req.body.name,
+      req.body.description
+    );
+  } catch (e) {
+    console.log(e);
+  }
+});
 
 const hash = (pass) => bcrypt.hashSync(pass, salt);
 
@@ -130,4 +142,3 @@ app.post("/deleteuser", (req, res) => {
   });
 });
 app.listen(port, () => console.log(`server is listening on port ${port}`));
-
