@@ -1,0 +1,37 @@
+<link
+  rel="stylesheet"
+  href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+  integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+  crossorigin="anonymous"
+/>
+
+<div class="container">
+  <form>
+    <div class="form-group">
+      <h1 class="text-center text-primary">🤣signUp page🤣</h1>
+      <div>
+        <span class="input-group-text">username</span>
+        <input #username type="text" class="form-control" name="username" />
+        <span class="input-group-text">fullname</span>
+        <input #fullname type="text" class="form-control" name="fullname" />
+        <span class="input-group-text">secret info</span>
+        <input #secretinfo type="text" class="form-control" name="secretinfo" />
+        <span class="input-group-text">password</span>
+        <input #password type="text" class="form-control" name="password" />
+        <span class="input-group-text">repeat password</span>
+        <input type="text" #reppassword class="form-control" name="password" />
+      </div>
+    </div>
+  </form>
+  <button
+    (click)="
+      collect(username.value, fullname.value, secretinfo.value, password.value)
+    "
+  >
+    submit
+  </button>
+</div>
+
+<p>if you already have acount <a href="#" routerLink = "/">login</a></p>
+
+

@@ -1,0 +1,23 @@
+<link
+  rel="stylesheet"
+  href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+  integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+  crossorigin="anonymous"
+/>
+
+<div class="container">
+  <form>
+    <div class="form-group">
+      <h1 class="text-center text-primary">🤣Login Page🤣</h1>
+      <div>
+        <span class="input-group-text">username</span>
+        <input #username type="text" class="form-control" name="username" />
+        <span class="input-group-text">password</span>
+        <input #password type="text" class="form-control" name="password" />
+      </div>
+    </div>
+  </form>
+  <button (click)="collectlogin(username.value, password.value)">sign up</button>
+</div>
+<p>if you dont have acount <a href="#" routerLink = "signup">sign up</a></p>
+
