@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+
 import { HttpClient } from '@angular/common/http';
 
 import { Observable } from 'rxjs';
@@ -26,6 +27,8 @@ export class HttpService {
   // haveData(): Observable<IUser[]> {
   //   return this.http.get<IUser[]>(`${this.pathBase}/user`);
   // }
+  ROOT_URL = 'http://localhost:3008';
+
 
   getOrganizationData() {
     // console.log('fij', this.http.get(this.pathBaseOrganization));
@@ -43,10 +46,7 @@ export class HttpService {
       userID: 1,
     });
 
-  ROOT_URL = 'http://localhost:3000';
-
-  constructor(private http: HttpClient) {}
-
+  }
   getPosts() {
     return this.http.get(this.ROOT_URL + '/getUser');
   }
