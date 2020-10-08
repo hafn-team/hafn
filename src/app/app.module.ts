@@ -18,6 +18,7 @@ import { CreateProjectComponent } from './create-project/create-project.componen
 
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
+import { ForgetpasswordComponent } from './forgetpassword/forgetpassword.component';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { SignupComponent } from './signup/signup.component';
     ProjectsComponent,
     CreateProjectComponent,
     LoginComponent,
-    SignupComponent
+    SignupComponent,
+    ForgetpasswordComponent
   ],
 
   imports: [

@@ -59,4 +59,7 @@ export class HttpService {
     return this.http.post(this.ROOT_URL + '/login', obj);
 
   }
+  changePass(obj){
+    return this.http.post(this.ROOT_URL + '/forgetPassword', obj)
+  }
 }
