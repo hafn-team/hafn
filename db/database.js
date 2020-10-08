@@ -110,6 +110,7 @@ const login = (callback) => {
   });
 };
 
+
 const forgetPass = (callback) => {
   connection.query("select username, secretinfo from users", (err, data) => {
     if (err) throw callback(err);
@@ -118,10 +119,7 @@ const forgetPass = (callback) => {
 };
 
 const updatePass = (arr, callback) => {
-  let sql = `UPDATE users
-  SET password = ?,
-  WHERE
-    secretinfo = ?;`;
+  let sql = `UPDATE users SET password = ?  WHERE secretinfo = ?;`;
   connection.query(sql, arr, (err, data) => {
     if (err) throw err;
     callback(null, data);
@@ -135,7 +133,6 @@ const deleteUser = (username, callback) => {
     callback(null, data);
   });
 };
-
 module.exports = {
   createProject,
   getAllData,

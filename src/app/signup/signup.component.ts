@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../http.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -7,7 +8,7 @@ import { HttpService } from '../http.service';
   styleUrls: ['./signup.component.css'],
 })
 export class SignupComponent implements OnInit {
-  constructor(private _http: HttpService) {}
+  constructor(private _http: HttpService, private router: Router) {}
 
   posts: any;
 
@@ -19,16 +20,23 @@ export class SignupComponent implements OnInit {
     });
   }
 
-  collect(username, fullname, secretinfo, password) {
-    this.objData = {
-      username: username,
-      fullname: fullname,
-      secretinfo: secretinfo,
-      password: password,
-    };
-    console.log(this.objData);
-    this._http.saveToDb(this.objData).subscribe((data) => {
-      console.log('succes');
-    });
+  collect(username, fullname, secretinfo, password, reppassword) {
+    if (reppassword !== password) {
+      alert('the password must be the same ');
+      return;
+    } else {
+      this.objData = {
+        username: username,
+        fullname: fullname,
+        secretinfo: secretinfo,
+        password: password,
+      };
+      console.log(this.objData);
+      this._http.saveToDb(this.objData).subscribe((data) => {
+        this.router.navigateByUrl('/home');
+
+        console.log('succes');
+      });
+    }
   }
 }
