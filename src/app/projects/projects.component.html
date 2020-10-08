@@ -21,10 +21,10 @@
       <h6 class="m-0 font-weight-bold text-primary">All projects</h6>
     </div>
     <div class="card-body">
-      <ul class="list-group">
+      <ul class="list-group" *ngFor="let project of projectData">
         <li class="list-group-item">
-          {{ this.projectData[0]?.name }}
-          {{ this.projectData[0]?.description }}
+          {{ this.project?.name }}
+          {{ this.project?.description }}
         </li>
       </ul>
     </div>

@@ -3,7 +3,6 @@ const mysqlConfig = require("./config.js");
 
 const connection = mysql.createConnection(mysqlConfig);
 
-
 connection.connect(function (err) {
   if (err) {
     console.error("error connecting: " + err.stack);
@@ -38,22 +37,7 @@ const getOrganization = function (userID) {
   });
 };
 
-//get all projet of organizations
-const getOrgProjects = function (orgId) {
-  return new Promise((resolve, reject) => {
-    connection.query(
-      `select * from projects where organizationID=${orgId}`,
-      (e, result) => {
-        if (e) {
-          console.log(e);
-          return reject();
-        }
-        resolve(result);
-      }
-    );
-  });
-};
-/***** crud operations for organisations table *****/
+/*****create new organization *****/
 const createOrganization = function (userID, name, description) {
   return new Promise((resolve, reject) => {
     connection.query(
@@ -70,6 +54,38 @@ const createOrganization = function (userID, name, description) {
   });
 };
 
+//get all projet of organizations
+const getOrgProjects = function (orgId) {
+  return new Promise((resolve, reject) => {
+    connection.query(
+      `select * from projects where organizationID=${orgId}`,
+      (e, result) => {
+        if (e) {
+          console.log(e);
+          return reject();
+        }
+        resolve(result);
+      }
+    );
+  });
+};
+
+//Create new project
+const createProject = function (userID, organizationID, name, description) {
+  return new Promise((resolve, reject) => {
+    connection.query(
+      `INSERT INTO projects set ?`,
+      { name, description, organizationID, userID },
+      (e, result) => {
+        if (e) {
+          console.log(e);
+          return reject();
+        }
+        resolve(result);
+      }
+    );
+  });
+};
 
 const getAllData = (callback) => {
   connection.query("select * from users", (err, data) => {
@@ -118,7 +134,7 @@ const deleteUser = (username, callback) => {
   });
 };
 module.exports = {
-  // getUser,
+  createProject,
   getAllData,
   postData,
   login,
