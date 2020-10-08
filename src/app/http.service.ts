@@ -12,11 +12,12 @@ export class HttpService {
     return this.http.get(this.ROOT_URL + '/getUser');
   }
   saveToDb(obj) {
-    console.log('ee');
     return this.http.post(this.ROOT_URL + '/addUsers', obj);
   }
   logUser(obj) {
-    console.log('fend', obj);
     return this.http.post(this.ROOT_URL + '/login', obj);
+  }
+  changePass(obj){
+    return this.http.post(this.ROOT_URL + '/forgetPassword', obj)
   }
 }
