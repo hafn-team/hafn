@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../http.service';
+import { LocalService } from '../local.service';
 @Component({
   selector: 'app-creat-organization',
   templateUrl: './creat-organization.component.html',
@@ -9,13 +10,17 @@ export class CreatOrganizationComponent implements OnInit {
   newOrgName: String = '';
   newOrgDescription: String = '';
   newOrganization: any = [];
+  ide: number;
+  constructor(private _http: HttpService, private data: LocalService) {}
 
-  constructor(private _http: HttpService) {}
+  ngOnInit(): void {
+    this.data.currentid.subscribe((id) => (this.ide = id));
+    console.log('username', this.ide);
+  }
 
-  ngOnInit(): void {}
   postNewOrg() {
     this._http
-      .postOrganization(this.newOrgName, this.newOrgDescription)
+      .postOrganization(this.newOrgName, this.newOrgDescription, this.ide)
       .subscribe((data) => {
         console.log('fokzeo', data);
         this.newOrganization = data;

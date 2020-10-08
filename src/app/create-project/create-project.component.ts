@@ -13,7 +13,7 @@ export class CreateProjectComponent implements OnInit {
   constructor(private _http: HttpService) {}
 
   ngOnInit(): void {
-    this._http.getOrganizationData().subscribe((data) => {
+    this._http.getOrganizationData(1).subscribe((data) => {
       console.log('fokzeo', data);
       this.organizationData = data;
     });
