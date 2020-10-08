@@ -11,16 +11,23 @@ connection.connect(function (err) {
 
   console.log("connected as id " + connection.threadId);
 });
-// const getUser = function () {
-//   return new Promise((resolve, reject) => {
-//     connection.query("SELECT * FROM users", (err, data) => {
-//       if (err) {
-//         reject(err);
-//       }
-//       resolve(data);
-//     });
-//   });
-// };
+
+//get the userId
+const getUserId = function (username) {
+  return new Promise((resolve, reject) => {
+    connection.query(
+      `select id from users where username=${username}`,
+      (e, result) => {
+        if (e) {
+          console.log(e);
+          return reject();
+        }
+        resolve(result);
+      }
+    );
+  });
+};
+
 // get all organizations of user
 const getOrganization = function (userID) {
   return new Promise((resolve, reject) => {
@@ -110,7 +117,6 @@ const login = (callback) => {
   });
 };
 
-
 const forgetPass = (callback) => {
   connection.query("select username, secretinfo from users", (err, data) => {
     if (err) throw callback(err);
@@ -134,6 +140,7 @@ const deleteUser = (username, callback) => {
   });
 };
 module.exports = {
+  getUserId,
   createProject,
   getAllData,
   postData,

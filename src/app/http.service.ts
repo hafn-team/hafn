@@ -27,20 +27,20 @@ export class HttpService {
   // }
   ROOT_URL = 'http://localhost:3008';
 
-  getOrganizationData() {
+  getOrganizationData(user_id) {
     // console.log('fij', this.http.get(this.pathBaseOrganization));
-    return this.http.get(this.pathBaseOrganization);
+    return this.http.get(this.ROOT_URL + `/organization/${user_id}`);
   }
 
   getOrgProjectData() {
     return this.http.get(this.pathBaseOrgProject);
   }
 
-  postOrganization(name, description) {
+  postOrganization(name, description, id) {
     return this.http.post(this.pathBaseOrganization, {
       name: name,
       description: description,
-      userID: 1,
+      userID: id,
     });
   }
   getPosts() {
@@ -55,6 +55,12 @@ export class HttpService {
     return this.http.post(this.ROOT_URL + '/login', obj);
   }
 
+  userId(name) {
+    console.log('name===>', name);
+    var halim = this.http.get(this.ROOT_URL + `/user/${"'" + name + "'"}`);
+    return halim;
+  }
+
   postProject(name, description) {
     return this.http.post(this.pathBaseOrgProject, {
       name: name,
@@ -63,7 +69,7 @@ export class HttpService {
       userID: 1,
     });
   }
-  changePass(obj){
-    return this.http.post(this.ROOT_URL + '/forgetPassword', obj)
+  changePass(obj) {
+    return this.http.post(this.ROOT_URL + '/forgetPassword', obj);
   }
 }

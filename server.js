@@ -15,14 +15,15 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// app.get("/user", async (req, res) => {
-//   try {
-//     const userData = await db.getUser();
-//     res.status(200).send(userData);
-//   } catch (err) {
-//     console.error(err);
-//   }
-// });
+//get userId
+app.get("/user/:username", async (req, res) => {
+  try {
+    const userData = await db.getUserId(req.params.username);
+    res.status(200).send(userData[0]);
+  } catch (err) {
+    console.error(err);
+  }
+});
 
 /**
  * Get all organizations by user
