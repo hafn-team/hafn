@@ -32,8 +32,8 @@ export class HttpService {
     return this.http.get(this.ROOT_URL + `/organization/${user_id}`);
   }
 
-  getOrgProjectData() {
-    return this.http.get(this.pathBaseOrgProject);
+  getOrgProjectData(id) {
+    return this.http.get(this.ROOT_URL + `/getOrgProject/${id}`);
   }
 
   postOrganization(name, description, id) {
@@ -61,12 +61,12 @@ export class HttpService {
     return halim;
   }
 
-  postProject(name, description) {
+  postProject(name, description, userId, orgId) {
     return this.http.post(this.pathBaseOrgProject, {
       name: name,
       description: description,
-      organizationID: 3,
-      userID: 1,
+      organizationID: orgId,
+      userID: userId,
     });
   }
   changePass(obj) {

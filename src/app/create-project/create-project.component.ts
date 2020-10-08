@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../http.service';
+import { LocalService } from '../local.service';
+
 @Component({
   selector: 'app-create-project',
   templateUrl: './create-project.component.html',
@@ -10,17 +12,38 @@ export class CreateProjectComponent implements OnInit {
   newOrgProjectDescription: String = '';
   newProject: any = [];
   organizationData: any = [];
-  constructor(private _http: HttpService) {}
+  ide: number;
+  orgName: String = '';
+  orgId: number;
+
+  constructor(private _http: HttpService, private data: LocalService) {}
 
   ngOnInit(): void {
-    this._http.getOrganizationData(1).subscribe((data) => {
-      console.log('fokzeo', data);
+    this.data.currentid.subscribe((id) => (this.ide = id));
+    console.log('username', this.ide);
+    this._http.getOrganizationData(this.ide).subscribe((data: any) => {
+      console.log('fokzeo', data.length);
+
       this.organizationData = data;
     });
   }
+
+  wetever() {
+    for (var i = 0; i < this.organizationData.length; i++) {
+      if (this.orgName === this.organizationData[i].name) {
+        this.orgId = this.organizationData[i].id;
+        console.log('51513', this.orgId);
+      }
+    }
+  }
   postNewOrgProject() {
     this._http
-      .postProject(this.newOrgProjectName, this.newOrgProjectDescription)
+      .postProject(
+        this.newOrgProjectName,
+        this.newOrgProjectDescription,
+        this.ide,
+        this.orgId
+      )
       .subscribe((data) => {
         console.log('wonderful Angular', data);
         this.newProject = data;
