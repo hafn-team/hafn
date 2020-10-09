@@ -139,7 +139,57 @@ const deleteUser = (username, callback) => {
     callback(null, data);
   });
 };
+
+///select all usersName
+const getUserName = function () {
+  return new Promise((resolve, reject) => {
+    connection.query(`select username, id from users`, (e, result) => {
+      if (e) {
+        console.log(e);
+        return reject();
+      }
+      resolve(result);
+    });
+  });
+};
+
+///Ad new users to the organisation
+const AddNewUsersToOrg = function (userID, orgID) {
+  return new Promise((resolve, reject) => {
+    connection.query(
+      `INSERT INTO useOrg set ?`,
+      { userID, orgID },
+      (e, result) => {
+        if (e) {
+          console.log(e);
+          return reject();
+        }
+        resolve(result);
+      }
+    );
+  });
+};
+
+///get organizations where other users add this user
+const getOtherOrg = function (userID) {
+  return new Promise((resolve, reject) => {
+    connection.query(
+      `select * from organizations, useorg where useorg.userID=${userID} and useorg.orgID = organizations.id`,
+      (e, result) => {
+        if (e) {
+          console.log(e);
+          return reject();
+        }
+        resolve(result);
+      }
+    );
+  });
+};
+
 module.exports = {
+  getOtherOrg,
+  AddNewUsersToOrg,
+  getUserName,
   getUserId,
   createProject,
   getAllData,

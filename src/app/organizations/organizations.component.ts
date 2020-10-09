@@ -10,8 +10,12 @@ import { Router } from '@angular/router';
 })
 export class OrganizationsComponent implements OnInit {
   organizationData: any = [];
+  otherUserOrg: any = [];
   message: string;
   userid: any;
+  userIdAdd: number = null;
+  userName: string = '';
+  usernames: any = [];
   // num: number = 4;
 
   constructor(
@@ -26,11 +30,46 @@ export class OrganizationsComponent implements OnInit {
     this._http.userId(this.message).subscribe((data) => {
       this.userid = data;
       this.data.changeId(this.userid.id);
-      // this.num = this.userid.id;
+      console.log('userid', this.userid);
       this._http.getOrganizationData(this.userid.id).subscribe((data) => {
         console.log('fokzeo', data);
         this.organizationData = data;
       });
     });
   }
+
+  ngDoCheck(): void {
+    this.findUserID();
+  }
+
+  wiiiwo() {
+    this._http.otherUserName().subscribe((data) => {
+      console.log('userNameId', data);
+      this.usernames = data;
+      this.usernames = this.usernames.filter(user => user.id !== this.userid.id);
+    });
+  }
+
+  findUserID() {
+    for (let i = 0; i < this.usernames.length; i++) {
+      if (this.usernames[i].username === this.userName) {
+        this.userIdAdd = this.usernames[i].id;
+      }
+    }
+    console.log('kgpre', this.userIdAdd);
+  }
+
+  AddNewUser(OgId) {
+    this._http.userOrgId(this.userIdAdd, OgId).subscribe((data) => {
+      console.log('000===00', data);
+    });
+  }
+
+  otherUser(){
+    this._http.otherUserOrg(this.userid.id).subscribe((data) => {
+      console.log('000===004555', data);
+      this.otherUserOrg = data;
+    })
+  }
+
 }
