@@ -72,4 +72,23 @@ export class HttpService {
   changePass(obj) {
     return this.http.post(this.ROOT_URL + '/forgetPassword', obj);
   }
+
+  //get All userName
+  otherUserName() {
+    return this.http.get(this.ROOT_URL + '/user');
+  }
+
+  ///post user org id and
+  userOrgId(userId, orgId) {
+    return this.http.post(this.ROOT_URL + '/userOrgId/', {
+      userID: userId,
+      orgID: orgId,
+    });
+  }
+
+//get organizations where other users add this user
+otherUserOrg(userid){
+  return this.http.get(this.ROOT_URL + `/orgotherusers/${userid}`);
+}
+
 }
