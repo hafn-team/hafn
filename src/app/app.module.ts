@@ -2,8 +2,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-
-
 import { FormsModule } from '@angular/forms';
 
 
@@ -15,10 +13,12 @@ import { CreatOrganizationComponent } from './creat-organization/creat-organizat
 import { ProjectsComponent } from './projects/projects.component';
 import { CreateProjectComponent } from './create-project/create-project.component';
 
-
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { ForgetpasswordComponent } from './forgetpassword/forgetpassword.component';
+import { IssuesComponent } from './issues/issues.component';
+import { FeaturesComponent } from './features/features.component';
+import { InsideProjectComponent } from './inside-project/inside-project.component';
 
 
 @NgModule({
@@ -31,6 +31,10 @@ import { ForgetpasswordComponent } from './forgetpassword/forgetpassword.compone
     CreateProjectComponent,
     LoginComponent,
     SignupComponent,
+    ForgetpasswordComponent,
+    IssuesComponent,
+    FeaturesComponent,
+    InsideProjectComponent,
     ForgetpasswordComponent
   ],
 
@@ -39,7 +43,10 @@ import { ForgetpasswordComponent } from './forgetpassword/forgetpassword.compone
     AppRoutingModule,
     HttpClientModule,
     FormsModule
+
   ],
+
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [],
   bootstrap: [AppComponent],
 })

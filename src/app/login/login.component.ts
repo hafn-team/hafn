@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
     this.data.currentMessage.subscribe((message) => (this.message = message));
   }
 
-  collectlogin(username, password) {
+  collectlogin(username, password) {  
     console.log(username, password);
     this.objData = {
       username: username,

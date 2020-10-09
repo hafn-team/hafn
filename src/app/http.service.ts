@@ -1,8 +1,11 @@
 import { Injectable } from '@angular/core';
 
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { Observable } from 'rxjs';
+
+const headers = new HttpHeaders();
+headers.set('Content-Type', 'application/json; charset=utf-8');
 
 export interface IUser {
   id: number;
@@ -26,6 +29,7 @@ export class HttpService {
   //   return this.http.get<IUser[]>(`${this.pathBase}/user`);
   // }
   ROOT_URL = 'http://localhost:3008';
+
 
   getOrganizationData(user_id) {
     // console.log('fij', this.http.get(this.pathBaseOrganization));
@@ -55,6 +59,7 @@ export class HttpService {
     return this.http.post(this.ROOT_URL + '/login', obj);
   }
 
+
   userId(name) {
     console.log('name===>', name);
     var halim = this.http.get(this.ROOT_URL + `/user/${"'" + name + "'"}`);
@@ -71,6 +76,32 @@ export class HttpService {
   }
   changePass(obj) {
     return this.http.post(this.ROOT_URL + '/forgetPassword', obj);
+  }
+  addFeature(obj) {
+    return this.http.post(this.ROOT_URL + '/addFeature', obj);
+  }
+  addIssue(obj) {
+    return this.http.post(this.ROOT_URL + '/addIssue', obj, {
+      headers: headers,
+    });
+  }
+  getIssues(obj) {
+    return this.http.post(this.ROOT_URL + '/projectIssues', obj);
+  }
+  getFeatures(obj) {
+    return this.http.post(this.ROOT_URL + '/projectFeature', obj);
+  }
+  deleteIssues(obj) {
+    return this.http.post(this.ROOT_URL + '/deleteIssues', obj);
+  }
+  deleteFeatures(obj) {
+    return this.http.post(this.ROOT_URL + '/deleteFeature', obj);
+  }
+  upFeat(obj) {
+    return this.http.post(this.ROOT_URL + '/updateFeature', obj);
+  }
+  upIss(obj) {
+    return this.http.post(this.ROOT_URL + '/updateIssues', obj);
   }
 
   //get All userName
@@ -90,5 +121,4 @@ export class HttpService {
 otherUserOrg(userid){
   return this.http.get(this.ROOT_URL + `/orgotherusers/${userid}`);
 }
-
 }

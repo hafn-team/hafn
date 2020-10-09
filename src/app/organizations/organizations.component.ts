@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../http.service';
+
 import { LocalService } from '../local.service';
 import { Router } from '@angular/router';
 
@@ -10,6 +11,7 @@ import { Router } from '@angular/router';
 })
 export class OrganizationsComponent implements OnInit {
   organizationData: any = [];
+
   otherUserOrg: any = [];
   message: string;
   userid: any;
@@ -72,5 +74,4 @@ export class OrganizationsComponent implements OnInit {
       this.otherUserOrg = data;
     })
   }
-
 }
