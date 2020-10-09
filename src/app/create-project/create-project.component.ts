@@ -12,6 +12,7 @@ export class CreateProjectComponent implements OnInit {
   newOrgProjectDescription: String = '';
   newProject: any = [];
   organizationData: any = [];
+
   ide: number;
   orgName: String = '';
   orgId: number;
@@ -49,4 +50,5 @@ export class CreateProjectComponent implements OnInit {
         this.newProject = data;
       });
   }
+
 }

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../http.service';
+
 import { LocalService } from '../local.service';
+
 
 @Component({
   selector: 'app-projects',
@@ -9,6 +11,7 @@ import { LocalService } from '../local.service';
 })
 export class ProjectsComponent implements OnInit {
   projectData: any = [];
+
   ide: number;
   organizationData: any = [];
   orgName: string = '';

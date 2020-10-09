@@ -15,6 +15,7 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+
 //get userId
 app.get("/user/:username", async (req, res) => {
   try {
@@ -151,6 +152,79 @@ app.post("/deleteuser", (req, res) => {
   });
 });
 
+app.post("/addIssue", (req, res) => {
+  let body = req.body;
+  let arr = [
+    body.title,
+    body.description,
+    body.state,
+    body.posterID,
+    body.projectID,
+  ];
+  db.createIssues(arr, (err, data) => {
+    if (err) throw err;
+    res.send(`${arr[0]} created sucssefully`);
+  });
+});
+
+app.post("/projectIssues", (req, res) => {
+  db.getIssues(req.body.projectID, (err, data) => {
+    if (err) throw err;
+    res.send(data);
+  });
+});
+
+app.post("/updateIssues", (req, res) => {
+  let arr = [req.body.newState, req.body.projectID, req.body.title];
+  db.updateIssues(arr, (err, data) => {
+    if (err) throw err;
+    res.send("issue is up to date");
+  });
+});
+
+app.post("/deleteIssues", (req, res) => {
+  db.deleteIssues(req.body.title, (err, data) => {
+    if (err) throw err;
+    res.send("issue removed");
+  });
+});
+
+app.post("/addFeature", (req, res) => {
+  let body = req.body;
+  let arr = [
+    body.title,
+    body.description,
+    body.state,
+    body.posterID,
+    body.projectID,
+  ];
+  db.createFeature(arr, (err, data) => {
+    if (err) throw err;
+    res.send(`created sucssefully`);
+  });
+});
+
+app.post("/projectFeature", (req, res) => {
+  db.getFeature(req.body.projectID, (err, data) => {
+    if (err) throw err;
+    res.send(data);
+  });
+});
+
+app.post("/updateFeature", (req, res) => {
+  let arr = [req.body.newState, req.body.projectID, req.body.title];
+  db.updateFeature(arr, (err, data) => {
+    if (err) throw err;
+    res.send("feature is up to date");
+  });
+});
+
+app.post("/deleteFeature", (req, res) => {
+  console.log(req.body);
+  db.deleteFeature(req.body.title, (err, data) => {
+    if (err) throw err;
+    res.send("Feature removed");
+  });
 //get All user name
 app.get("/user", async (req, res) => {
   try {

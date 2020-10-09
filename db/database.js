@@ -12,6 +12,7 @@ connection.connect(function (err) {
   console.log("connected as id " + connection.threadId);
 });
 
+
 //get the userId
 const getUserId = function (username) {
   return new Promise((resolve, reject) => {
@@ -140,6 +141,69 @@ const deleteUser = (username, callback) => {
   });
 };
 
+
+let createIssues = (arr, callback) => {
+  var sql = `insert into issues (title, description, state, posterID, projectID) values (?,?,?,?,?);`;
+  connection.query(sql, arr, (err, data) => {
+    if (err) throw callback(err);
+    callback(null, data);
+  });
+};
+
+let getIssues = (projectID, callback) => {
+  var sql = `select * from issues where projectID = ?`;
+  connection.query(sql, projectID, (err, data) => {
+    if (err) throw callback(err);
+    callback(null, data);
+  });
+};
+
+let updateIssues = (arr, callback) => {
+  var sql = `UPDATE issues SET state = ? WHERE projectID = ? and title = ?;`;
+  connection.query(sql, arr, (err, data) => {
+    if (err) throw callback(err);
+    callback(null, data);
+  });
+};
+
+let deleteIssues = (title, callback) => {
+  var sql = `DELETE FROM issues WHERE title = ?`;
+  connection.query(sql, title, (err, data) => {
+    if (err) throw callback(err);
+    callback(null, data);
+  });
+};
+
+let createFeature = (arr, callback) => {
+  var sql = `insert into features (title, description, state, posterID, projectID) values (?,?,?,?,?);`;
+  connection.query(sql, arr, (err, data) => {
+    if (err) throw callback(err);
+    callback(null, data);
+  });
+};
+
+let getFeature = (projectID, callback) => {
+  var sql = `select * from features where projectID = ?`;
+  connection.query(sql, projectID, (err, data) => {
+    if (err) throw callback(err);
+    callback(null, data);
+  });
+};
+
+let updateFeature = (arr, callback) => {
+  var sql = `UPDATE features SET state = ? WHERE projectID = ? and title =?;`;
+  connection.query(sql, arr, (err, data) => {
+    if (err) throw callback(err);
+    callback(null, data);
+  });
+};
+
+let deleteFeature = (title, callback) => {
+  var sql = `DELETE FROM features WHERE title = ?`;
+  connection.query(sql, [title], (err, data) => {
+    if (err) throw callback(err);
+    callback(null, data);
+
 ///select all usersName
 const getUserName = function () {
   return new Promise((resolve, reject) => {
@@ -183,6 +247,7 @@ const getOtherOrg = function (userID) {
         resolve(result);
       }
     );
+
   });
 };
 
@@ -201,4 +266,13 @@ module.exports = {
   getOrganization,
   getOrgProjects,
   createOrganization,
+  createIssues,
+  getIssues,
+  updateIssues,
+  deleteIssues,
+  createFeature,
+  getFeature,
+  updateFeature,
+  deleteFeature,
+
 };

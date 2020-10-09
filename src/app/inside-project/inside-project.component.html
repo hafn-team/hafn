@@ -1,0 +1,57 @@
+<div>
+  <h1>project Features</h1>
+  <div class="card-body">
+    <ul class="list-group" *ngFor="let element of feat">
+      <li class="list-group-item">
+        title: {{ this.element?.title }}
+        <br />
+        description: {{ this.element?.description }}
+        <br />
+        state :{{ this.element?.state }}
+        <button
+          (click)="
+            updateFeat(
+              this.element?.projectID,
+              newState.value,
+              this.element?.title
+            )
+          "
+        >
+          update state
+        </button>
+        <input type="text" #newState />
+        <br />
+        <button (click)="delFeat(this.element?.title)">delete feature</button>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div>
+  <h1>project issues</h1>
+  <div class="card-body">
+    <ul class="list-group" *ngFor="let element of iss">
+      <li class="list-group-item">
+        title: {{ this.element?.title }}
+        <br />
+        description: {{ this.element?.description }}
+        <br />
+        state :{{ this.element?.state }}
+        <button
+          (click)="
+            updateIss(
+              this.element?.projectID,
+              newState.value,
+              this.element?.title
+            )
+          "
+        >
+          update state
+        </button>
+        <input type="text" #newState />
+        <br />
+        <button (click)="delIss(this.element?.title)">delete feature</button>
+      </li>
+    </ul>
+  </div>
+</div>
