@@ -38,6 +38,7 @@ export class OrganizationsComponent implements OnInit {
         this.organizationData = data;
       });
     });
+    this.wiiiwo();
   }
 
   ngDoCheck(): void {

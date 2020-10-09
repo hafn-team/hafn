@@ -12,10 +12,10 @@ export class CreateProjectComponent implements OnInit {
   newOrgProjectDescription: String = '';
   newProject: any = [];
   organizationData: any = [];
+  ide: number = null;
 
-  ide: number;
   orgName: String = '';
-  orgId: number;
+  orgId: number = null;
 
   constructor(private _http: HttpService, private data: LocalService) {}
 
@@ -28,6 +28,11 @@ export class CreateProjectComponent implements OnInit {
       this.organizationData = data;
     });
   }
+
+ ngDoCheck(): void {
+    this.wetever();
+  }
+
 
   wetever() {
     for (var i = 0; i < this.organizationData.length; i++) {
