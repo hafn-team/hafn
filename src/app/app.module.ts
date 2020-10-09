@@ -4,6 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { FormsModule } from '@angular/forms';
 
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -19,6 +20,7 @@ import { IssuesComponent } from './issues/issues.component';
 import { FeaturesComponent } from './features/features.component';
 import { InsideProjectComponent } from './inside-project/inside-project.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,6 +35,15 @@ import { InsideProjectComponent } from './inside-project/inside-project.componen
     IssuesComponent,
     FeaturesComponent,
     InsideProjectComponent,
+    ForgetpasswordComponent
+  ],
+
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule
+
   ],
 
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],

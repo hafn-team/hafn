@@ -17,9 +17,12 @@
       </div>
     </div>
   </form>
-  <button (click)="collectlogin(username.value, password.value)">sign up</button>
+  <button (click)="collectlogin(username.value, password.value); newMessage()">
+    sign up
+  </button>
 </div>
 <p>if you dont have acount <a href="#" routerLink = "signup">sign up</a></p>
 <p>forgot your password ?<a href="#" routerLink = "forgetPass">here</a></p>
+
 
 

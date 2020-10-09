@@ -9,7 +9,6 @@
         <li><a href="#" routerLink="/project">     projects     </a></li>
         <li><a href="#" routerLink="/createP">     create project    </a></li>
         <li><a href="#" routerLink="/">     disconnect    </a></li>
-
       </ul>
     </nav>
   </div>
@@ -19,7 +18,12 @@
   <form>
     <div class="form-group">
       <label htmlFor="org-name">Organization/Team:</label>
-      <select class="form-control form-control-lg" name="orgId">
+
+      <select
+        class="form-control form-control-lg"
+        name="orgId"
+        [(ngModel)]="orgName"
+      >
         <option *ngFor="let organization of organizationData">
           {{ organization.name }}
         </option>
@@ -53,3 +57,4 @@
     </button>
   </form>
 </div>
+<button (click)="wetever()">comfirm</button>

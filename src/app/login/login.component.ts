@@ -1,7 +1,8 @@
 import { collectExternalReferences } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../http.service';
-import {Router} from '@angular/router';
+import { Router } from '@angular/router';
+import { LocalService } from '../local.service';
 
 @Component({
   selector: 'app-login',
@@ -9,10 +10,17 @@ import {Router} from '@angular/router';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
-  constructor(private _http: HttpService , private router: Router) {}
+  constructor(
+    private _http: HttpService,
+    private router: Router,
+    private data: LocalService
+  ) {}
   objData: any = [];
+  message: string;
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.data.currentMessage.subscribe((message) => (this.message = message));
+  }
 
   collectlogin(username, password) {  
     console.log(username, password);
@@ -21,12 +29,14 @@ export class LoginComponent implements OnInit {
       password: password,
     };
     this._http.logUser(this.objData).subscribe((data) => {
-      if(data){
+      if (data) {
         this.router.navigateByUrl('/home');
-      }
-      else{
-        alert("somthing wrong")
+      } else {
+        alert('somthing wrong');
       }
     });
+  }
+  newMessage() {
+    this.data.changeMessage(this.objData.username);
   }
 }

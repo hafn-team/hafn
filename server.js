@@ -15,14 +15,16 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// app.get("/user", async (req, res) => {
-//   try {
-//     const userData = await db.getUser();
-//     res.status(200).send(userData);
-//   } catch (err) {
-//     console.error(err);
-//   }
-// });
+
+//get userId
+app.get("/user/:username", async (req, res) => {
+  try {
+    const userData = await db.getUserId(req.params.username);
+    res.status(200).send(userData[0]);
+  } catch (err) {
+    console.error(err);
+  }
+});
 
 /**
  * Get all organizations by user
@@ -223,6 +225,33 @@ app.post("/deleteFeature", (req, res) => {
     if (err) throw err;
     res.send("Feature removed");
   });
+//get All user name
+app.get("/user", async (req, res) => {
+  try {
+    const userData = await db.getUserName(req.params.username, req.params.id);
+    res.status(200).send(userData);
+  } catch (err) {
+    console.error(err);
+  }
+});
+
+///Add new users to the organization
+app.post("/userOrgId/", async (req, res) => {
+  try {
+    await db.AddNewUsersToOrg(req.body.userID, req.body.orgID);
+  } catch (e) {
+    console.log(e);
+  }
+});
+
+//get organizations where other users add this user
+app.get("/orgotherusers/:userid", async (req, res) => {
+  try {
+    const userData = await db.getOtherOrg(req.params.userid);
+    res.status(200).send(userData);
+  } catch (err) {
+    console.error(err);
+  }
 });
 
 app.listen(port, () => console.log(`server is listening on port ${port}`));

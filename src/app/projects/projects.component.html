@@ -9,7 +9,6 @@
         <li><a href="#" routerLink="/project">     projects     </a></li>
         <li><a href="#" routerLink="/createP">     create project    </a></li>
         <li><a href="#" routerLink="/">     disconnect    </a></li>
-
       </ul>
     </nav>
   </div>
@@ -20,6 +19,19 @@
     <div class="card-header py-3">
       <h6 class="m-0 font-weight-bold text-primary">All projects</h6>
     </div>
+
+    <label htmlFor="org-name">Organization/Team:</label>
+
+    <select
+      class="form-control form-control-lg"
+      name="orgId"
+      [(ngModel)]="orgName"
+    >
+      <option *ngFor="let organization of organizationData">
+        {{ organization.name }}
+      </option>
+    </select>
+
     <div class="card-body">
       <ul class="list-group" *ngFor="let project of projectData">
         <li class="list-group-item">
@@ -30,3 +42,5 @@
     </div>
   </div>
 </div>
+
+<button (click)="wetever()">comfirm</button>

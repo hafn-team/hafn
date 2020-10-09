@@ -30,20 +30,21 @@ export class HttpService {
   // }
   ROOT_URL = 'http://localhost:3008';
 
-  getOrganizationData() {
+
+  getOrganizationData(user_id) {
     // console.log('fij', this.http.get(this.pathBaseOrganization));
-    return this.http.get(this.pathBaseOrganization);
+    return this.http.get(this.ROOT_URL + `/organization/${user_id}`);
   }
 
-  getOrgProjectData() {
-    return this.http.get(this.pathBaseOrgProject);
+  getOrgProjectData(id) {
+    return this.http.get(this.ROOT_URL + `/getOrgProject/${id}`);
   }
 
-  postOrganization(name, description) {
+  postOrganization(name, description, id) {
     return this.http.post(this.pathBaseOrganization, {
       name: name,
       description: description,
-      userID: 1,
+      userID: id,
     });
   }
   getPosts() {
@@ -58,12 +59,19 @@ export class HttpService {
     return this.http.post(this.ROOT_URL + '/login', obj);
   }
 
-  postProject(name, description) {
+
+  userId(name) {
+    console.log('name===>', name);
+    var halim = this.http.get(this.ROOT_URL + `/user/${"'" + name + "'"}`);
+    return halim;
+  }
+
+  postProject(name, description, userId, orgId) {
     return this.http.post(this.pathBaseOrgProject, {
       name: name,
       description: description,
-      organizationID: 3,
-      userID: 1,
+      organizationID: orgId,
+      userID: userId,
     });
   }
   changePass(obj) {
@@ -95,4 +103,22 @@ export class HttpService {
   upIss(obj) {
     return this.http.post(this.ROOT_URL + '/updateIssues', obj);
   }
+
+  //get All userName
+  otherUserName() {
+    return this.http.get(this.ROOT_URL + '/user');
+  }
+
+  ///post user org id and
+  userOrgId(userId, orgId) {
+    return this.http.post(this.ROOT_URL + '/userOrgId/', {
+      userID: userId,
+      orgID: orgId,
+    });
+  }
+
+//get organizations where other users add this user
+otherUserOrg(userid){
+  return this.http.get(this.ROOT_URL + `/orgotherusers/${userid}`);
+}
 }
