@@ -15,7 +15,6 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-
 //get userId
 app.get("/user/:username", async (req, res) => {
   try {
@@ -225,6 +224,7 @@ app.post("/deleteFeature", (req, res) => {
     if (err) throw err;
     res.send("Feature removed");
   });
+});
 //get All user name
 app.get("/user", async (req, res) => {
   try {

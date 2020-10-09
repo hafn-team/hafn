@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../http.service';
-
+import { Router } from '@angular/router';
 import { LocalService } from '../local.service';
 
 
@@ -11,12 +11,12 @@ import { LocalService } from '../local.service';
 })
 export class ProjectsComponent implements OnInit {
   projectData: any = [];
-
+  projectid: number = 0;
   ide: number;
   organizationData: any = [];
   orgName: string = '';
   orgId: number;
-  constructor(private _http: HttpService, private data: LocalService) {}
+  constructor(private _http: HttpService, private data: LocalService,   private router: Router,) {}
 
   ngOnInit(): void {
     this.data.currentid.subscribe((id) => (this.ide = id));
@@ -27,7 +27,7 @@ export class ProjectsComponent implements OnInit {
       this.organizationData = data;
     });
   }
-  wetever() {
+  halim() {
     for (var i = 0; i < this.organizationData.length; i++) {
       if (this.orgName === this.organizationData[i].name) {
         this.orgId = this.organizationData[i].id;
@@ -39,4 +39,18 @@ export class ProjectsComponent implements OnInit {
       this.projectData = data;
     });
   }
+
+issFeatFunc(){
+    this.router.navigateByUrl('/issFeat');
+      }
+
+ newProjectId(projectName){
+   for(var i = 0; i < this.projectData.length; i++){
+     if (this.projectData[i].name === projectName){
+       this.data.changeProjectId(this.projectData[i].id)
+     }
+   }
+   console.log('=====>>>',projectName,this.projectid)
+ }
+
 }

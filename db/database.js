@@ -12,7 +12,6 @@ connection.connect(function (err) {
   console.log("connected as id " + connection.threadId);
 });
 
-
 //get the userId
 const getUserId = function (username) {
   return new Promise((resolve, reject) => {
@@ -141,7 +140,6 @@ const deleteUser = (username, callback) => {
   });
 };
 
-
 let createIssues = (arr, callback) => {
   var sql = `insert into issues (title, description, state, posterID, projectID) values (?,?,?,?,?);`;
   connection.query(sql, arr, (err, data) => {
@@ -203,7 +201,8 @@ let deleteFeature = (title, callback) => {
   connection.query(sql, [title], (err, data) => {
     if (err) throw callback(err);
     callback(null, data);
-
+  });
+};
 ///select all usersName
 const getUserName = function () {
   return new Promise((resolve, reject) => {
@@ -247,7 +246,6 @@ const getOtherOrg = function (userID) {
         resolve(result);
       }
     );
-
   });
 };
 
@@ -274,5 +272,4 @@ module.exports = {
   getFeature,
   updateFeature,
   deleteFeature,
-
 };

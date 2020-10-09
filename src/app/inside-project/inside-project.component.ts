@@ -2,6 +2,7 @@ import { collectExternalReferences } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../http.service';
 import { Router } from '@angular/router';
+import { LocalService } from '../local.service';
 
 @Component({
   selector: 'app-inside-project',
@@ -9,15 +10,16 @@ import { Router } from '@angular/router';
   styleUrls: ['./inside-project.component.css'],
 })
 export class InsideProjectComponent implements OnInit {
-  constructor(private _http: HttpService, private router: Router) {}
+  constructor(private _http: HttpService, private router: Router, private data: LocalService, ) {}
 
   objData: any = [];
   delObj: any = [];
   upObj: any = [];
   feat: any = [];
   iss: any = [];
-
+  projectid: number = null;
   ngOnInit(): void {
+    console.log('ala',this.projectid)
     this.objData = {
       projectID: 1,
     };

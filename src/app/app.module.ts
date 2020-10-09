@@ -46,7 +46,7 @@ import { InsideProjectComponent } from './inside-project/inside-project.componen
 
   ],
 
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
+ 
   providers: [],
   bootstrap: [AppComponent],
 })
