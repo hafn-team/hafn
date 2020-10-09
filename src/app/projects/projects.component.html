@@ -8,22 +8,25 @@
         <li><a href="#" routerLink="/creat">    create organization     </a></li>
         <li><a href="#" routerLink="/project">     projects     </a></li>
         <li><a href="#" routerLink="/createP">     create project    </a></li>
+        <li><a href="#" routerLink="/">     disconnect    </a></li>
+
       </ul>
     </nav>
   </div>
 </header>
 <div>
-    <h1 class="h3 mb-4 text-gray-800">Projects List:</h1>
-    <div class="card shadow mb-4">
-      <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">All projects</h6>
-      </div>
-      <div class="card-body">
-        <ul class="list-group">
-              <li class="list-group-item">
-                  this is list of projects
-              </li>
-        </ul>
-      </div>
+  <h1 class="h3 mb-4 text-gray-800">Projects List:</h1>
+  <div class="card shadow mb-4">
+    <div class="card-header py-3">
+      <h6 class="m-0 font-weight-bold text-primary">All projects</h6>
+    </div>
+    <div class="card-body">
+      <ul class="list-group" *ngFor="let project of projectData">
+        <li class="list-group-item">
+          {{ this.project?.name }}
+          {{ this.project?.description }}
+        </li>
+      </ul>
     </div>
   </div>
+</div>

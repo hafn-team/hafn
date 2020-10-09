@@ -3,37 +3,48 @@
     <a href="#" class="logo">app-logo</a>
     <nav>
       <ul class="nav justify-content-center">
+
         <li><a href="#" routerLink="/home">     home     </a></li>
         <li><a href="#" routerLink="/organ">    organization    </a></li>
         <li><a href="#" routerLink="/creat">    create organization     </a></li>
         <li><a href="#" routerLink="/project">     projects     </a></li>
         <li><a href="#" routerLink="/createP">     create project    </a></li>
+        <li><a href="#" routerLink="/">     disconnect    </a></li>
+
       </ul>
     </nav>
   </div>
 </header>
 <div>
-    <h1 class="h3 mb-4 text-gray-800">Add new Organization/Team</h1>
-    <form>
-      <div class="form-group">
-        <label htmlFor="org-name">Organization/Team name:</label>
-        <input
-          type="text"
-          class="form-control"
-          id="org-name"
-        />
-      </div>
-      <div class="form-group">
-        <label htmlFor="org-description">Description: </label>
-        <textarea
-          class="form-control"
-          id="org-description"
-          rows="3"
-        ></textarea>
-      </div>
+  <h1 class="h3 mb-4 text-gray-800">Add new Organization/Team</h1>
+  <form>
+    <div class="form-group">
+      <label htmlFor="org-name">Organization/Team name:</label>
+      <input
+        type="text"
+        [(ngModel)]="newOrgName"
+        class="form-control"
+        id="org-name"
+        name="newOrgName"
+      />
+    </div>
+    <div class="form-group">
+      <label htmlFor="org-description">Description: </label>
+      <textarea
+        class="form-control"
+        id="org-description"
+        [(ngModel)]="newOrgDescription"
+        rows="3"
+        name="newOrgDescription"
+      ></textarea>
+      <!-- <p *ngIf="newOrgName.length > 0">
+        {{ newOrgName }}
+      </p>
+      <p *ngIf="newOrgDescription.length > 0">
+        {{ newOrgDescription }}
+      </p> -->
+    </div>
 
-      <button >
-        Create Organization/Team
-      </button>
-    </form>
-  </div>
+    <button (click)="postNewOrg()">Create Organization/Team</button>
+  </form>
+</div>

@@ -14,7 +14,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  collectlogin(username, password) {
+  collectlogin(username, password) {  
     console.log(username, password);
     this.objData = {
       username: username,

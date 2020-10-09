@@ -8,52 +8,48 @@
         <li><a href="#" routerLink="/creat">    create organization     </a></li>
         <li><a href="#" routerLink="/project">     projects     </a></li>
         <li><a href="#" routerLink="/createP">     create project    </a></li>
+        <li><a href="#" routerLink="/">     disconnect    </a></li>
+
       </ul>
     </nav>
   </div>
 </header>
 <div>
-    <h1 class="h3 mb-4 text-gray-800">Add new Project</h1>
-    <form>
-      <div class="form-group">
-        <label htmlFor="org-name">Organization/Team:</label>
-        <select
-          class="form-control form-control-lg"
-          name="orgId"
-        >
-              <option>
-              first option 
-              </option>
-        </select>
-      </div>
+  <h1 class="h3 mb-4 text-gray-800">Add new Project</h1>
+  <form>
+    <div class="form-group">
+      <label htmlFor="org-name">Organization/Team:</label>
+      <select class="form-control form-control-lg" name="orgId">
+        <option *ngFor="let organization of organizationData">
+          {{ organization.name }}
+        </option>
+      </select>
+    </div>
 
-      <div class="form-group">
-        <label htmlFor="org-name">Project name:</label>
-        <input
-          type="text"
-          class="form-control"
-          id="org-name"
-          name="name"
-          aria-describedby="organization-name"
-        />
-      </div>
-      <div class="form-group">
-        <label htmlFor="org-description">Description: </label>
-        <textarea
-          class="form-control"
-          id="org-description"
-          rows="3"
-          name="description"
-        
-        ></textarea>
-      </div>
+    <div class="form-group">
+      <label htmlFor="org-name">Project name:</label>
+      <input
+        type="text"
+        [(ngModel)]="newOrgProjectName"
+        class="form-control"
+        id="org-name"
+        name="newOrgProjectName"
+        aria-describedby="organization-name"
+      />
+    </div>
+    <div class="form-group">
+      <label htmlFor="org-description">Description: </label>
+      <textarea
+        class="form-control"
+        id="org-description"
+        [(ngModel)]="newOrgProjectDescription"
+        rows="3"
+        name="newOrgProjectDescription"
+      ></textarea>
+    </div>
 
-      <button
-        type="submit"
-        class="btn btn-primary"
-      
-      >
-        Create Project
-      </button>
-    </form>
-  </div>
+    <button type="submit" class="btn btn-primary" (click)="postNewOrgProject()">
+      Create Project
+    </button>
+  </form>
+</div>

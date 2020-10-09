@@ -2,6 +2,7 @@
   "name": "sama",
   "version": "0.0.0",
   "scripts": {
+    "react:dev": "nodemon server.js",
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
@@ -19,6 +20,11 @@
     "@angular/platform-browser": "~10.1.4",
     "@angular/platform-browser-dynamic": "~10.1.4",
     "@angular/router": "~10.1.4",
+    "angular-in-memory-web-api": "^0.11.0",
+    "cors": "^2.8.5",
+    "bcryptjs": "^2.4.3",
+    "express": "^4.17.1",
+    "mysql": "^2.18.1",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.2"
