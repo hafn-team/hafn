@@ -99,3 +99,11 @@ CREATE TABLE useOrg (
     orgID int NOT NULL,
     primary key (id)
 );
+CREATE TABLE globalChat (
+     id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+     userID int,
+     username varchar (50) NOT NULL,
+     messagetext TEXT,
+     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,   
+     FOREIGN KEY (userID) REFERENCES users(id)
+);

@@ -5,24 +5,19 @@
   crossorigin="anonymous"
 />
 
-<div class="container">
+<div class="container login">
   <form>
     <div class="form-group">
-      <h1 class="text-center text-primary">🤣Login Page🤣</h1>
+      <h1 class="text-center text-primary">Login Page</h1>
       <div>
-        <span class="input-group-text">username</span>
-        <input #username type="text" class="form-control" name="username" />
-        <span class="input-group-text">password</span>
-        <input #password type="text" class="form-control" name="password" />
+        <input #username type="text" class="form-control input" name="username" placeholder="username"/>
+        <input #password type="password" class="form-control input" name="password" placeholder="password"/>
       </div>
     </div>
   </form>
-  <button (click)="collectlogin(username.value, password.value); newMessage()">
-    sign up
+  <button class="log" (click)="collectlogin(username.value, password.value); newMessage()">
+    Login
   </button>
+  <p>if you dont have acount <a href="#" routerLink="/signup">sign up</a></p>
+<p>forgot your password ?<a href="#" routerLink="/forgetPass">here</a></p>
 </div>
-<p>if you dont have acount <a href="#" routerLink = "signup">sign up</a></p>
-<p>forgot your password ?<a href="#" routerLink = "forgetPass">here</a></p>
-
-
-

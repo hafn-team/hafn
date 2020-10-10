@@ -1,21 +1,20 @@
-<header>
-  <div class="container">
-    <a href="#" class="logo">app-logo</a>
-    <nav>
-      <ul class="nav justify-content-center">
-        <li><a href="#" routerLink="/home">     home     </a></li>
-        <li><a href="#" routerLink="/organ">    organization    </a></li>
-        <li><a href="#" routerLink="/creat">    create organization     </a></li>
-        <li><a href="#" routerLink="/project">     projects     </a></li>
-        <li><a href="#" routerLink="/createP">     create project    </a></li>
-        <li><a href="#" routerLink="/">     disconnect    </a></li>
 
+<header>
+  <div class="sidebar">
+    <header>HAN</header>
+    <nav>
+      <ul>
+        <li><a href="#" class="fas fa-qrcode" routerLink="/home">     home     </a></li>
+        <li><a href="#" class="fas fa-qrcode" routerLink="/organ">    organization    </a></li>
+        <li><a href="#" class="fas fa-qrcode" routerLink="/creat">    create organization     </a></li>
+        <li><a href="#" class="fas fa-qrcode" routerLink="/">     disconnect    </a></li>
       </ul>
     </nav>
   </div>
 </header>
-<div>
-  <h1 class="h3 mb-4 text-gray-800">Organizations List:</h1>
+
+<div class="left">
+  <h1  class="text-center text-primary">Organizations List:</h1>
   <div class="card shadow mb-4">
     <div class="card-header py-3">
       <h6 class="m-0 font-weight-bold text-primary">My organizations/Teams</h6>
@@ -31,15 +30,15 @@
               {{ this.user?.username }}
             </option>
           </select>
-          <button (click)="AddNewUser(this.organization.id)">Add</button>
+          <button  class="btn btn-primary" (click)="AddNewUser(this.organization.id)">Add</button>
         </li>
       </ul>
     </div>
   </div>
 </div>
 
-<div>
-  <h1 class="h3 mb-4 text-gray-800">Other Organizations List:</h1>
+<div class="left">
+  <h1  class="text-center text-primary">Other Organizations List:</h1>
   <div class="card shadow mb-4">
     <div class="card-header py-3">
       <h6 class="m-0 font-weight-bold text-primary">Other organizations/Teams</h6>
@@ -53,6 +52,8 @@
       </ul>
     </div>
   </div>
+  <button  class="btn btn-primary" (click)="otherUser()">your invitations</button>
+  <button  class="btn btn-primary" routerLink="/project">Projects</button>
+  <button  class="btn btn-primary green" routerLink="/createP">creat Project</button>
 </div>
 
-<button (click)="otherUser()">just for try</button>

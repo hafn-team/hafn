@@ -1,17 +1,13 @@
 const mysql = require("mysql");
 const mysqlConfig = require("./config.js");
-
 const connection = mysql.createConnection(mysqlConfig);
-
 connection.connect(function (err) {
   if (err) {
     console.error("error connecting: " + err.stack);
     return;
   }
-
   console.log("connected as id " + connection.threadId);
 });
-
 //get the userId
 const getUserId = function (username) {
   return new Promise((resolve, reject) => {
@@ -27,7 +23,6 @@ const getUserId = function (username) {
     );
   });
 };
-
 // get all organizations of user
 const getOrganization = function (userID) {
   return new Promise((resolve, reject) => {
@@ -43,7 +38,6 @@ const getOrganization = function (userID) {
     );
   });
 };
-
 /*****create new organization *****/
 const createOrganization = function (userID, name, description) {
   return new Promise((resolve, reject) => {
@@ -60,7 +54,6 @@ const createOrganization = function (userID, name, description) {
     );
   });
 };
-
 //get all projet of organizations
 const getOrgProjects = function (orgId) {
   return new Promise((resolve, reject) => {
@@ -76,7 +69,6 @@ const getOrgProjects = function (orgId) {
     );
   });
 };
-
 //Create new project
 const createProject = function (userID, organizationID, name, description) {
   return new Promise((resolve, reject) => {
@@ -93,7 +85,6 @@ const createProject = function (userID, organizationID, name, description) {
     );
   });
 };
-
 const getAllData = (callback) => {
   connection.query("select * from users", (err, data) => {
     if (err) throw callback(err);
@@ -101,7 +92,6 @@ const getAllData = (callback) => {
     callback(null, data);
   });
 };
-
 const postData = (user, callback) => {
   let sql = `insert into users(fullname, username, secretinfo, password) values (?,?,?,?) `;
   connection.query(sql, user, (err, data) => {
@@ -109,21 +99,18 @@ const postData = (user, callback) => {
     callback(null, data);
   });
 };
-
 const login = (callback) => {
   connection.query("select username, password from users", (err, data) => {
     if (err) throw callback(err);
     callback(null, data);
   });
 };
-
 const forgetPass = (callback) => {
   connection.query("select username, secretinfo from users", (err, data) => {
     if (err) throw callback(err);
     callback(null, data);
   });
 };
-
 const updatePass = (arr, callback) => {
   let sql = `UPDATE users SET password = ?  WHERE secretinfo = ?;`;
   connection.query(sql, arr, (err, data) => {
@@ -131,7 +118,6 @@ const updatePass = (arr, callback) => {
     callback(null, data);
   });
 };
-
 const deleteUser = (username, callback) => {
   let sql = `DELETE FROM users WHERE username = '${username}'`;
   connection.query(sql, (err, data) => {
@@ -139,7 +125,6 @@ const deleteUser = (username, callback) => {
     callback(null, data);
   });
 };
-
 let createIssues = (arr, callback) => {
   var sql = `insert into issues (title, description, state, posterID, projectID) values (?,?,?,?,?);`;
   connection.query(sql, arr, (err, data) => {
@@ -147,7 +132,6 @@ let createIssues = (arr, callback) => {
     callback(null, data);
   });
 };
-
 let getIssues = (projectID, callback) => {
   var sql = `select * from issues where projectID = ?`;
   connection.query(sql, projectID, (err, data) => {
@@ -155,7 +139,6 @@ let getIssues = (projectID, callback) => {
     callback(null, data);
   });
 };
-
 let updateIssues = (arr, callback) => {
   var sql = `UPDATE issues SET state = ? WHERE projectID = ? and title = ?;`;
   connection.query(sql, arr, (err, data) => {
@@ -163,7 +146,6 @@ let updateIssues = (arr, callback) => {
     callback(null, data);
   });
 };
-
 let deleteIssues = (title, callback) => {
   var sql = `DELETE FROM issues WHERE title = ?`;
   connection.query(sql, title, (err, data) => {
@@ -171,7 +153,6 @@ let deleteIssues = (title, callback) => {
     callback(null, data);
   });
 };
-
 let createFeature = (arr, callback) => {
   var sql = `insert into features (title, description, state, posterID, projectID) values (?,?,?,?,?);`;
   connection.query(sql, arr, (err, data) => {
@@ -179,7 +160,6 @@ let createFeature = (arr, callback) => {
     callback(null, data);
   });
 };
-
 let getFeature = (projectID, callback) => {
   var sql = `select * from features where projectID = ?`;
   connection.query(sql, projectID, (err, data) => {
@@ -187,7 +167,6 @@ let getFeature = (projectID, callback) => {
     callback(null, data);
   });
 };
-
 let updateFeature = (arr, callback) => {
   var sql = `UPDATE features SET state = ? WHERE projectID = ? and title =?;`;
   connection.query(sql, arr, (err, data) => {
@@ -195,7 +174,6 @@ let updateFeature = (arr, callback) => {
     callback(null, data);
   });
 };
-
 let deleteFeature = (title, callback) => {
   var sql = `DELETE FROM features WHERE title = ?`;
   connection.query(sql, [title], (err, data) => {
@@ -215,7 +193,6 @@ const getUserName = function () {
     });
   });
 };
-
 ///Ad new users to the organisation
 const AddNewUsersToOrg = function (userID, orgID) {
   return new Promise((resolve, reject) => {
@@ -232,7 +209,6 @@ const AddNewUsersToOrg = function (userID, orgID) {
     );
   });
 };
-
 ///get organizations where other users add this user
 const getOtherOrg = function (userID) {
   return new Promise((resolve, reject) => {
@@ -248,8 +224,37 @@ const getOtherOrg = function (userID) {
     );
   });
 };
-
+////Send Message
+const sendMsg = function (userID, messagetext, username) {
+  return new Promise((resolve, reject) => {
+    connection.query(
+      `insert into globalChat set ?`,
+      { userID, messagetext, username },
+      (e, result) => {
+        if (e) {
+          console.log(e);
+          return reject();
+        }
+        resolve(result);
+      }
+    );
+  });
+};
+//get msg from
+const getAllMsg = () => {
+  return new Promise((resolve, reject) => {
+    connection.query("select * from globalchat", (e, result) => {
+      if (e) {
+        console.log(e);
+        return reject();
+      }
+      resolve(result);
+    });
+  });
+};
 module.exports = {
+  getAllMsg,
+  sendMsg,
   getOtherOrg,
   AddNewUsersToOrg,
   getUserName,

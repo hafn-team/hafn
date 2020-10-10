@@ -24,11 +24,8 @@ export class ProjectsComponent implements OnInit {
 
   ngOnInit(): void {
     this.local.currentid.subscribe((id) => (this.ide = id));
-    console.log('username', this.ide);
     this.local.otherOrg.subscribe((org) => this.otherOrg = org )
-    console.log('>/>/<',this.otherOrg)
     this._http.getOrganizationData(this.ide).subscribe((data: any) => {
-      console.log('fokzeo', data.length);
       this.organizationData = data;
     });
   }
@@ -37,7 +34,6 @@ export class ProjectsComponent implements OnInit {
     for (var i = 0; i < this.organizationData.length; i++) {
       if (this.orgName === this.organizationData[i].name) {
         this.orgId = this.organizationData[i].id;
-        console.log('51513', this.orgId);
       }
     }
     this._http.getOrgProjectData(this.orgId).subscribe((data) => {
@@ -49,11 +45,9 @@ export class ProjectsComponent implements OnInit {
     for(var i = 0; i < this.otherOrg.length; i++){
       if(this.otherOrgName === this.otherOrg[i].name){
         this.otherOrgid = this.otherOrg[i].id;
-        console.log('11111',this.otherOrgid)
       }
       }
       this._http.getOrgProjectData(this.otherOrgid).subscribe((dataa: any) =>{
-        console.log('<====',dataa);
         this.otherProjectData = dataa;
       });
     }
@@ -76,7 +70,6 @@ issFeatFunc(){
        this.local.changeProjectId(this.projectData[i].id)
      }
    }
-   console.log('=====>>>',projectName,this.projectid)
  }
 
 
