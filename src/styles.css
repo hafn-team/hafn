@@ -1,5 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
-* {
+/* * {
     margin: 0;
     padding: 0;
 }
@@ -52,4 +52,32 @@ nav a:hover{
 .btn {        
     font-size: 15px;
     font-weight: bold;
+} */
+button{
+    align-items: center;
+    width: 100px;
+    padding: 10px;
+    border-radius: 20px;
+    font-size: 15px;
+    margin: 10px 0 ;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+body {
+    background-image: url("./assets/back2.jpg") ;
+    background-size: cover;
+}
+
+.green{
+    background-color: green;
+}
+ .red{
+    background-color: red;
+}
+ .yallow{
+    background-color: yellow;
+}
+div{
+    opacity: 95%;
 }

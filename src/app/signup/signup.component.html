@@ -5,31 +5,26 @@
   crossorigin="anonymous"
 />
 
-<div class="container">
+<div class="container login">
   <form>
     <div class="form-group">
-      <h1 class="text-center text-primary">🤣signUp page🤣</h1>
-      <div>
-        <span class="input-group-text">username</span>
-        <input #username type="text" class="form-control" name="username" />
-        <span class="input-group-text">fullname</span>
-        <input #fullname type="text" class="form-control" name="fullname" />
-        <span class="input-group-text">secret info</span>
-        <input #secretinfo type="text" class="form-control" name="secretinfo" />
-        <span class="input-group-text">password</span>
-        <input #password type="text" class="form-control" name="password" />
-        <span class="input-group-text">repeat password</span>
-        <input type="text" #reppassword class="form-control" name="password" />
+      <h1 class="text-center text-primary">signUp page</h1>
+      <div>        
+        <input #username type="text" class="form-control input" name="username" placeholder="username"/>     
+        <input #fullname type="text" class="form-control input" name="fullname" placeholder="fullname"/>
+        <input #secretinfo type="text" class="form-control input" name="secretinfo" placeholder="secret info"/>
+        <input #password type="password" class="form-control input" name="password" placeholder="password"/>
+        <input type="password" #reppassword class="form-control input" name="password" placeholder="repeat password" />
       </div>
     </div>
   </form>
-  <button
+  <button class="log"
     (click)="
       collect(username.value, fullname.value, secretinfo.value, password.value, reppassword.value)
     "
   >
     submit
   </button>
+  <p>if you already have acount <a href="#" routerLink = "/login">login</a></p>
 </div>
 
-<p>if you already have acount <a href="#" routerLink = "/">login</a></p>

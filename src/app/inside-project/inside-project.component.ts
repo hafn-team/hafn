@@ -33,7 +33,6 @@ export class InsideProjectComponent implements OnInit {
     });
     this._http.getIssues(this.objData).subscribe((data) => {
       this.iss = data;
-      console.log(data);
     });
   }
   delFeat(title) {

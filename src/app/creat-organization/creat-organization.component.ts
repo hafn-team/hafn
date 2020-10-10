@@ -16,14 +16,11 @@ export class CreatOrganizationComponent implements OnInit {
   constructor(private _http: HttpService, private data: LocalService) {}
   ngOnInit(): void {
     this.data.currentid.subscribe((id) => (this.ide = id));
-    console.log('username', this.ide);
   }
-
   postNewOrg() {
     this._http
       .postOrganization(this.newOrgName, this.newOrgDescription, this.ide)
       .subscribe((data) => {
-        console.log('fokzeo', data);
         this.newOrganization = data;
       });
   }

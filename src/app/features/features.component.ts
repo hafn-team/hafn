@@ -17,7 +17,6 @@ export class FeaturesComponent implements OnInit {
   ngOnInit(): void {
     this.local.projectId .subscribe((id) => (this.projectid = id));
     this.local.currentid.subscribe((id) => (this.ide = id));
-    console.log('ala',this.projectid)
   }
 
   collectFeature(title, description, state) {

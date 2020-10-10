@@ -16,7 +16,6 @@ export class SignupComponent implements OnInit {
   ngOnInit(): void {
     this._http.getPosts().subscribe((data) => {
       this.posts = data;
-      console.log(this.posts);
     });
   }
 
@@ -33,9 +32,7 @@ export class SignupComponent implements OnInit {
       };
       console.log(this.objData);
       this._http.saveToDb(this.objData).subscribe((data) => {
-        this.router.navigateByUrl('/home');
-
-        console.log('succes');
+        this.router.navigateByUrl('/login');
       });
     }
   }

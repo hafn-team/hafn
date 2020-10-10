@@ -12,9 +12,10 @@ import { ForgetpasswordComponent } from './forgetpassword/forgetpassword.compone
 import { FeaturesComponent } from './features/features.component';
 import { IssuesComponent } from './issues/issues.component';
 import { InsideProjectComponent } from './inside-project/inside-project.component';
+import { LandingComponent } from './landing/landing.component';
 
 const routes: Routes = [
-  { path: '', component: LoginComponent },
+  { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'home', component: HomeComponent },
   { path: 'organ', component: OrganizationsComponent },
@@ -25,6 +26,7 @@ const routes: Routes = [
   { path: 'features', component: FeaturesComponent },
   { path: 'issues', component: IssuesComponent },
   { path: 'issFeat', component: InsideProjectComponent },
+  { path: '', component: LandingComponent },
 ];
 
 @NgModule({

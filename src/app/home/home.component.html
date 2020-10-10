@@ -1,19 +1,43 @@
-
-
 <header>
-    <div class="container">
-      <a href="#" class="logo">app-logo</a>
-      <nav>
-        <ul class="nav justify-content-center">
-          <li><a href="#" routerLink="/home">     home     </a></li>
-          <li><a href="#" routerLink="/organ">    organization    </a></li>
-          <li><a href="#" routerLink="/creat">    create organization     </a></li>
-          <li><a href="#" routerLink="/project">     projects     </a></li>
-          <li><a href="#" routerLink="/createP">     create project    </a></li>
-          <li><a href="#" routerLink="/">     disconnect    </a></li>
-
-        </ul>
-      </nav>
-    </div>
-  </header>
-
+  <div class="sidebar">
+    <header>HAN</header>
+    <nav>
+      <ul>
+        <li><a href="#" class="fas fa-qrcode" routerLink="/home">     home     </a></li>
+        <li><a href="#" class="fas fa-qrcode" routerLink="/organ">    organization    </a></li>
+        <li><a href="#" class="fas fa-qrcode" routerLink="/creat">    create organization     </a></li>
+        <li><a href="#" class="fas fa-qrcode" routerLink="/">     disconnect    </a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+<div class="left ocu">
+  <div class="container">
+      <h3 class=" text-center">Messaging</h3>
+      <div class="messaging">
+          <div class="inbox_msg">
+              <div class="mesgs">
+                  <div class="msg_history">
+                      <div class="incoming_msg">
+                          <div class="received_msg">
+                              <div class="received_withd_msg" *ngFor="let msg of massages ">
+                                  <div class="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
+                                  <p>{{msg.username + ":"}}</p>
+                                  <p>{{msg.messagetext}}</p>
+                                  <span class="time_date"> {{this.msg.created_at}}</span>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="type_msg">
+                      <div class="input_msg_write">
+                          <input [(ngModel)]="msg" type="text" class="write_msg" placeholder="Type a message" />
+                          <button class="msg_send_btn" type="button" (click)=" postMessage();getMessages(); " >send<i class="fa fa-paper-plane-o"
+                                  aria-hidden="true"></i></button>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>

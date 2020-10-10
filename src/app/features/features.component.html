@@ -5,10 +5,24 @@
   crossorigin="anonymous"
 />
 
-<div class="container">
+<header>
+  <div class="sidebar">
+    <header>HAN</header>
+    <nav>
+      <ul>
+        <li><a href="#" class="fas fa-qrcode" routerLink="/home">     home     </a></li>
+        <li><a href="#" class="fas fa-qrcode" routerLink="/organ">    organization    </a></li>
+        <li><a href="#" class="fas fa-qrcode" routerLink="/creat">    create organization     </a></li>
+        <li><a href="#" class="fas fa-qrcode" routerLink="/">     disconnect    </a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<div class="container left">
     <form>
       <div class="form-group">
-        <h1 class="text-center text-primary">🤞Features✌</h1>
+        <h1 class="text-center text-primary">Features</h1>
         <div>
           <span class="input-group-text">title</span>
           <input #title type="text" class="form-control" name="title" />
@@ -19,7 +33,7 @@
         </div>
       </div>
     </form>
-    <button (click)="collectFeature(title.value, description.value, state.value)">add Features</button>
+    <button  class="btn btn-primary green" (click)="collectFeature(title.value, description.value, state.value)">confirm</button>
   </div>
 
 

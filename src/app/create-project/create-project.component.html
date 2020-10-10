@@ -1,20 +1,20 @@
+
 <header>
-  <div class="container">
-    <a href="#" class="logo">app-logo</a>
+  <div class="sidebar">
+    <header>HAN</header>
     <nav>
-      <ul class="nav justify-content-center">
-        <li><a href="#" routerLink="/home">     home     </a></li>
-        <li><a href="#" routerLink="/organ">    organization    </a></li>
-        <li><a href="#" routerLink="/creat">    create organization     </a></li>
-        <li><a href="#" routerLink="/project">     projects     </a></li>
-        <li><a href="#" routerLink="/createP">     create project    </a></li>
-        <li><a href="#" routerLink="/">     disconnect    </a></li>
+      <ul>
+        <li><a href="#" class="fas fa-qrcode" routerLink="/home">     home     </a></li>
+        <li><a href="#" class="fas fa-qrcode" routerLink="/organ">    organization    </a></li>
+        <li><a href="#" class="fas fa-qrcode" routerLink="/creat">    create organization     </a></li>
+        <li><a href="#" class="fas fa-qrcode" routerLink="/">     disconnect    </a></li>
       </ul>
     </nav>
   </div>
 </header>
-<div>
-  <h1 class="h3 mb-4 text-gray-800">Add new Project</h1>
+
+<div class="left">
+  <h1 class="text-center text-primary">Add new Project</h1>
   <form>
     <div class="form-group">
       <label htmlFor="org-name">Organization/Team:</label>
@@ -52,9 +52,10 @@
       ></textarea>
     </div>
 
-    <button type="submit" class="btn btn-primary" (click)="postNewOrgProject()">
+    <button type="submit" class="btn btn-primary green" (click)="postNewOrgProject()">
       Create Project
     </button>
   </form>
+  <button  class="btn btn-primary" routerLink="/project">projects</button>
+
 </div>
-<!-- <button (click)="wetever()">comfirm</button> -->

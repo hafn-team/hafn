@@ -1,19 +1,19 @@
+
 <header>
-  <div class="container">
-    <a href="#" class="logo">app-logo</a>
+  <div class="sidebar">
+    <header>HAN</header>
     <nav>
-      <ul class="nav justify-content-center">
-        <li><a href="#" routerLink="/home">     home     </a></li>
-        <li><a href="#" routerLink="/organ">    organization    </a></li>
-        <li><a href="#" routerLink="/creat">    create organization     </a></li>
-        <li><a href="#" routerLink="/project">     projects     </a></li>
-        <li><a href="#" routerLink="/createP">     create project    </a></li>
-        <li><a href="#" routerLink="/">     disconnect    </a></li>
+      <ul>
+        <li><a href="#" class="fas fa-qrcode" routerLink="/home">     home     </a></li>
+        <li><a href="#" class="fas fa-qrcode" routerLink="/organ">    organization    </a></li>
+        <li><a href="#" class="fas fa-qrcode" routerLink="/creat">    create organization     </a></li>
+        <li><a href="#" class="fas fa-qrcode" routerLink="/">     disconnect    </a></li>
       </ul>
     </nav>
   </div>
 </header>
-<div>
+
+<div class="left">
   <h1 class="h3 mb-4 text-gray-800">Projects List:</h1>
   <div class="card shadow mb-4">
     <div class="card-header py-3">
@@ -37,12 +37,12 @@
           {{ this.project?.name }}
           {{ this.project?.description }}
         </li>
-        <button (click)="newProjectId(this.project.name) ; issFeatFunc()">Features/Issues</button>
-        <button (click)="newProjectId(this.project.name) ; featuresFunc()">Add Features</button>
-        <button (click)="newProjectId(this.project.name) ; issuesFunc()">Add Issues</button>
+        <button  class="btn btn-primary yallow" (click)="newProjectId(this.project.name) ; issFeatFunc()">State</button>
+        <button  class="btn btn-primary " (click)="newProjectId(this.project.name) ; featuresFunc()">add feat</button>
+        <button  class="btn btn-primary red" (click)="newProjectId(this.project.name) ; issuesFunc()">add issue</button>
       </ul>
     </div>
-    <button (click)="getOrgId()">comfirm</button>
+    <button  class="btn btn-primary green" (click)="getOrgId()">comfirm</button>
   </div>
   <div class="card shadow mb-4">
     <div class="card-header py-3">
@@ -63,11 +63,12 @@
           {{this.project?.name}} 
           {{this.project?.description}}
         </li>
-      <button (click)="newProjectId(this.project.name) ; issFeatFunc()">Features/Issues</button>
+      <button  class="btn btn-primary yallow" (click)="newProjectId(this.project.name) ; issFeatFunc()">Features/Issues</button>
       </ul>
     </div>
-    <button (click)="getOtherOrgId()">comfirm</button>
+    <button  class="btn btn-primary" (click)="getOtherOrgId()">comfirm</button>
   </div>
+  <button  class="btn btn-primary" routerLink="/createP">create new project</button>
 </div>
 
 

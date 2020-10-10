@@ -2,7 +2,7 @@
   "name": "sama",
   "version": "0.0.0",
   "scripts": {
-    "react:dev": "nodemon server.js",
+    "angular": "nodemon server.js",
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",

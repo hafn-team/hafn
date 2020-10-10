@@ -28,13 +28,10 @@ export class OrganizationsComponent implements OnInit {
 
   ngOnInit(): void {
     this.local.currentMessage.subscribe((message) => (this.message = message));
-    console.log('username', this.message);
     this._http.userId(this.message).subscribe((data) => {
       this.userid = data;
       this.local.changeId(this.userid.id);
-      console.log('userid', this.userid);
       this._http.getOrganizationData(this.userid.id).subscribe((data) => {
-        console.log('fokzeo', data);
         this.organizationData = data;
       });
     });
@@ -48,7 +45,6 @@ export class OrganizationsComponent implements OnInit {
 
   AddUsers() {
     this._http.otherUserName().subscribe((data) => {
-      console.log('userNameId', data);
       this.usernames = data;
       this.usernames = this.usernames.filter(user => user.id !== this.userid.id);
     });
@@ -60,7 +56,6 @@ export class OrganizationsComponent implements OnInit {
         this.userIdAdd = this.usernames[i].id;
       }
     }
-    console.log('kgpre', this.userIdAdd);
   }
 
   AddNewUser(OgId) {
@@ -71,17 +66,12 @@ export class OrganizationsComponent implements OnInit {
 
   otherUser(){
     this._http.otherUserOrg(this.userid.id).subscribe((data) => {
-      console.log('000===004555', data);
       this.otherUserOrg = data;
     })
     // this.passOtherOrgName();
   }
 passOtherOrgName(){
   var other = this.otherUserOrg;
-  // for(var i = 0; i < this.otherUserOrg.length; i++){
-  //   other.push(this.otherUserOrg[i].name)
-  // }
-  // console.log('/\/__/', other)
   this.local.passOtherOrg(other)
 }
 

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../http.service';
 import { LocalService } from '../local.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-project',
@@ -17,14 +18,12 @@ export class CreateProjectComponent implements OnInit {
   orgName: String = '';
   orgId: number = null;
 
-  constructor(private _http: HttpService, private data: LocalService) {}
+  constructor(private _http: HttpService, private data: LocalService , private router: Router) {}
 
   ngOnInit(): void {
     this.data.currentid.subscribe((id) => (this.ide = id));
     console.log('username', this.ide);
     this._http.getOrganizationData(this.ide).subscribe((data: any) => {
-      console.log('fokzeo', data.length);
-
       this.organizationData = data;
     });
   }
@@ -38,7 +37,6 @@ export class CreateProjectComponent implements OnInit {
     for (var i = 0; i < this.organizationData.length; i++) {
       if (this.orgName === this.organizationData[i].name) {
         this.orgId = this.organizationData[i].id;
-        console.log('51513', this.orgId);
       }
     }
   }
@@ -51,7 +49,7 @@ export class CreateProjectComponent implements OnInit {
         this.orgId
       )
       .subscribe((data) => {
-        console.log('wonderful Angular', data);
+        alert("added seccuesfully")
         this.newProject = data;
       });
   }

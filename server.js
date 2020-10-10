@@ -254,4 +254,21 @@ app.get("/orgotherusers/:userid", async (req, res) => {
   }
 });
 
+app.post("/globalChat", async (req, res) => {
+  try {
+    await db.sendMsg(req.body.userID, req.body.messagetext, req.body.username);
+  } catch (e) {
+    console.log(e);
+  }
+});
+//get all msg
+app.get("/globalChat", async (req, res) => {
+  try {
+    const messages = await db.getAllMsg();
+    res.status(200).send(messages);
+  } catch (err) {
+    console.error(err);
+  }
+});
+
 app.listen(port, () => console.log(`server is listening on port ${port}`));
