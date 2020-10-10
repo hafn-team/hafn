@@ -7,10 +7,13 @@ import { BehaviorSubject } from 'rxjs';
 export class LocalService {
   private messageSource = new BehaviorSubject('');
   currentMessage = this.messageSource.asObservable();
-  private useridid = new BehaviorSubject(0);
+  private useridid = new BehaviorSubject(null);
   currentid = this.useridid.asObservable();
   private projectidid = new BehaviorSubject(null)
   projectId = this.projectidid.asObservable();
+  private otherOrgName = new BehaviorSubject([]);
+  otherOrg = this.otherOrgName.asObservable();
+
 
   constructor() {}
 
@@ -25,4 +28,9 @@ export class LocalService {
   changeProjectId(projectid: number) {
     this.projectidid.next(projectid);
   }
+
+  passOtherOrg(orgName: any){
+    this.otherOrgName.next(orgName)
+  }
+
 }

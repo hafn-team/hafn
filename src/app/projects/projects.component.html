@@ -24,7 +24,6 @@
 
     <select
       class="form-control form-control-lg"
-      name="orgId"
       [(ngModel)]="orgName"
     >
       <option *ngFor="let organization of organizationData">
@@ -38,12 +37,38 @@
           {{ this.project?.name }}
           {{ this.project?.description }}
         </li>
-        <button (click)="newProjectId(this.project.name)"> alalal </button>
-        <button (click)="newProjectId(this.project.name) ; issFeatFunc()">testest</button>
+        <button (click)="newProjectId(this.project.name) ; issFeatFunc()">Features/Issues</button>
+        <button (click)="newProjectId(this.project.name) ; featuresFunc()">Add Features</button>
+        <button (click)="newProjectId(this.project.name) ; issuesFunc()">Add Issues</button>
       </ul>
     </div>
+    <button (click)="getOrgId()">comfirm</button>
+  </div>
+  <div class="card shadow mb-4">
+    <div class="card-header py-3">
+      <h6 class="m-0 font-weight-bold text-primary">All projects</h6>
+    </div>
+  
+    <label htmlFor="org-name">Other Organization:</label>
+  
+    <select class="form-control form-control-lg" [(ngModel)]="otherOrgName">
+      <option *ngFor="let otherOrganization of otherOrg" >
+      {{otherOrganization.name}}
+      </option>
+    </select>
+  
+    <div class="card-body">
+      <ul class="list-group" *ngFor="let project of otherProjectData">
+        <li class="list-group-item">
+          {{this.project?.name}} 
+          {{this.project?.description}}
+        </li>
+      <button (click)="newProjectId(this.project.name) ; issFeatFunc()">Features/Issues</button>
+      </ul>
+    </div>
+    <button (click)="getOtherOrgId()">comfirm</button>
   </div>
 </div>
 
-<button (click)="halim()">comfirm</button>
+
 
