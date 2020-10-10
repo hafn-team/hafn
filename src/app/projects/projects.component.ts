@@ -12,22 +12,28 @@ import { LocalService } from '../local.service';
 export class ProjectsComponent implements OnInit {
   projectData: any = [];
   projectid: number = 0;
-  ide: number;
+  ide: number = null;
   organizationData: any = [];
   orgName: string = '';
-  orgId: number;
-  constructor(private _http: HttpService, private data: LocalService,   private router: Router,) {}
+  orgId: number = null;
+  otherOrg: any = [];
+  otherProjectData: any = [];
+  otherOrgName: string = '';
+  otherOrgid: number = null;
+  constructor(private _http: HttpService, private local: LocalService,   private router: Router,) {}
 
   ngOnInit(): void {
-    this.data.currentid.subscribe((id) => (this.ide = id));
+    this.local.currentid.subscribe((id) => (this.ide = id));
     console.log('username', this.ide);
+    this.local.otherOrg.subscribe((org) => this.otherOrg = org )
+    console.log('>/>/<',this.otherOrg)
     this._http.getOrganizationData(this.ide).subscribe((data: any) => {
       console.log('fokzeo', data.length);
-
       this.organizationData = data;
     });
   }
-  halim() {
+
+  getOrgId() {
     for (var i = 0; i < this.organizationData.length; i++) {
       if (this.orgName === this.organizationData[i].name) {
         this.orgId = this.organizationData[i].id;
@@ -39,6 +45,26 @@ export class ProjectsComponent implements OnInit {
       this.projectData = data;
     });
   }
+  getOtherOrgId(){
+    for(var i = 0; i < this.otherOrg.length; i++){
+      if(this.otherOrgName === this.otherOrg[i].name){
+        this.otherOrgid = this.otherOrg[i].id;
+        console.log('11111',this.otherOrgid)
+      }
+      }
+      this._http.getOrgProjectData(this.otherOrgid).subscribe((dataa: any) =>{
+        console.log('<====',dataa);
+        this.otherProjectData = dataa;
+      });
+    }
+
+featuresFunc(){
+  this.router.navigateByUrl('/features');
+}   
+
+issuesFunc(){
+  this.router.navigateByUrl('/issues');
+}
 
 issFeatFunc(){
     this.router.navigateByUrl('/issFeat');
@@ -47,10 +73,12 @@ issFeatFunc(){
  newProjectId(projectName){
    for(var i = 0; i < this.projectData.length; i++){
      if (this.projectData[i].name === projectName){
-       this.data.changeProjectId(this.projectData[i].id)
+       this.local.changeProjectId(this.projectData[i].id)
      }
    }
    console.log('=====>>>',projectName,this.projectid)
  }
+
+
 
 }

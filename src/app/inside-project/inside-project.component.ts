@@ -10,7 +10,7 @@ import { LocalService } from '../local.service';
   styleUrls: ['./inside-project.component.css'],
 })
 export class InsideProjectComponent implements OnInit {
-  constructor(private _http: HttpService, private router: Router, private data: LocalService, ) {}
+  constructor(private _http: HttpService, private router: Router, private local: LocalService) {}
 
   objData: any = [];
   delObj: any = [];
@@ -19,9 +19,10 @@ export class InsideProjectComponent implements OnInit {
   iss: any = [];
   projectid: number = null;
   ngOnInit(): void {
+    this.local.projectId.subscribe((id) => (this.projectid = id));
     console.log('ala',this.projectid)
     this.objData = {
-      projectID: 1,
+      projectID: this.projectid,
     };
     this.getData();
   }

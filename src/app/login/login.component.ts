@@ -13,13 +13,13 @@ export class LoginComponent implements OnInit {
   constructor(
     private _http: HttpService,
     private router: Router,
-    private data: LocalService
+    private local: LocalService
   ) {}
   objData: any = [];
   message: string;
 
   ngOnInit(): void {
-    this.data.currentMessage.subscribe((message) => (this.message = message));
+    this.local.currentMessage.subscribe((message) => (this.message = message));
   }
 
   collectlogin(username, password) {  
@@ -37,6 +37,6 @@ export class LoginComponent implements OnInit {
     });
   }
   newMessage() {
-    this.data.changeMessage(this.objData.username);
+    this.local.changeMessage(this.objData.username);
   }
 }
