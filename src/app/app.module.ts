@@ -19,6 +19,8 @@ import { ForgetpasswordComponent } from './forgetpassword/forgetpassword.compone
 import { IssuesComponent } from './issues/issues.component';
 import { FeaturesComponent } from './features/features.component';
 import { InsideProjectComponent } from './inside-project/inside-project.component';
+
+
 import { LandingComponent } from './landing/landing.component';
 
 

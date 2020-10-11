@@ -254,6 +254,7 @@ app.get("/orgotherusers/:userid", async (req, res) => {
   }
 });
 
+///Send Msg
 app.post("/globalChat", async (req, res) => {
   try {
     await db.sendMsg(req.body.userID, req.body.messagetext, req.body.username);
@@ -261,6 +262,7 @@ app.post("/globalChat", async (req, res) => {
     console.log(e);
   }
 });
+
 //get all msg
 app.get("/globalChat", async (req, res) => {
   try {
